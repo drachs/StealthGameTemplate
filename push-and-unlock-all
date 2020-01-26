@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if ! [ -z "$(git status --porcelain)" ]; then
+	echo Working directory unclean... You must commit first
+	exit 1
+fi 
+
+git push
+
+if [ $? -ne 0 ]; then
+	echo Push failed, aborting unlockall operation
+	exit 1
+fi
+
+git lfs locks | while read foo bar; do 
+	./unlock $foo
+done
