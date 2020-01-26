@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" == "--reset-ro" ]; then
+	find Content | while read file; do
+		attrib +R $file
+	done
+	exit
+fi
+
+for var in "$@"; do
+	echo Unlocking $var
+	git lfs unlock $var
+	attrib +R $var
+done

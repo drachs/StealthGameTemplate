@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for var in "$@"; do
+	echo Locking $var
+	git lfs lock $var
+done
