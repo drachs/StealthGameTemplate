@@ -7,8 +7,6 @@ if [ "$1" == "--reset-ro" ]; then
 	exit
 fi
 
-git push
-
 for var in "$@"; do
 	echo Unlocking $var
 	git lfs unlock $var
